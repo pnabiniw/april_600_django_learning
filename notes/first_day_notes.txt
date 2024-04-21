@@ -1,0 +1,60 @@
+# 21 April 2024
+1. What is Django?
+=> Django is a python web framework used to develop web applications or websites
+
+
+2. Do we need framework?
+=> Reinventing the wheels. Do not reinvent the wheel.
+=> Certain tasks are already dine in the frameworks. That makes our work easier
+
+3. Famous Python web frameworks
+=> Django
+=> Flask 
+=> FastAPI
+=> Pyramid
+
+- Using flask most of the tasks are in the developers hand. We need to explicitly install different tools from the open source to complete a project
+- Django is a full-fledge framework. For most of the tasks, they are already builtin in django. (Migrations framework, Authentication app, Templating language)
+
+
+4. Web Application and Website
+=> Application in web with heavy user interactions is webapp.
+=> Websites are more of portfolio type site. Company website, restaurant websites
+
+
+5. Types of web application
+=> SPA (Single Page Application) (React or Angular)
+=> SSR (Server Side Rendering)
+
+
+6. Why Django?
+=> It is easy to learn for beginners
+=> Good security services (authentication, permission, CORS, CSRF)
+=> Used for the hard deadline porjects.
+=> Robustness
+=> Most of the features are already provided
+
+
+7. There are two types of solutions that can be achieved from Django framework
+=> Template based solution - Here we create SSR webapps
+=> APIs Solution - Here we create APIs using Django; DRF
+
+
+8. What do we learn in this class?
+=> For most of the time we stick to template based solution
+=> Final project (by instructor) is also done in template based solution
+=> But, API solution is also taught (7 classes)
+
+=> The final project is your choice (API or template based)
+
+
+# Project Setup
+1. Create a project folder and a venv inside it
+2. Activate the environment
+3. pip install django
+4. django-admin startproject <project_name>
+5. Open the project with your IDE
+
+
+
+
