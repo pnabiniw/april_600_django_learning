@@ -1,0 +1,4 @@
+# Django Commands
+1. django-admin startproject <project_name>
+2. python manage.py runserver
+3. python manage.py startapp <app_name>
