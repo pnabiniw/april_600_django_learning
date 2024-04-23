@@ -1,0 +1,10 @@
+Django design pattern is in MVT architecture
+Q. What is the difference between MVC and MVT?
+=> Laravel, .net (MVC)
+    - Model, View, Controller
+    - Database design, Html/CSS/JS, Core/business logic
+
+
+In MVT Architecture:
+    => Model, View, Template
+    => Database Design, Business Logic, HTML/CSS/JS

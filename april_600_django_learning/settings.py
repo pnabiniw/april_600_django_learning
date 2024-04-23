@@ -56,7 +56,7 @@ ROOT_URLCONF = 'april_600_django_learning.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [],  # directories
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
