@@ -21,3 +21,22 @@ def home_detail(request, id):
 
 def portfolio(request):
     return render(request, template_name="myapp/portfolio.html")
+
+
+def test(request):
+    return render(request, template_name="myapp/test.html")
+
+
+def root_page(request):
+    return render(request, template_name="myapp/root_page.html")
+
+
+def learning_context(request):
+    student = {"name": "Jon", "age": 30, "email": "jon@email.com", "address": "KTM"}
+    students = [
+        {"name": "Jon", "age": 30, "email": "jon@email.com", "address": "KTM"},
+        {"name": "Ram", "age": 30, "email": "jon@email.com", "address": "KTM"},
+        {"name": "Jane", "age": 30, "email": "jon@email.com", "address": "KTM"},
+        {"name": "Hary", "age": 30, "email": "jon@email.com", "address": "KTM"},
+    ]
+    return render(request, "myapp/learning_context.html", context={"students": students, "student": student})
