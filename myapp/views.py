@@ -35,8 +35,18 @@ def learning_context(request):
     student = {"name": "Jon", "age": 30, "email": "jon@email.com", "address": "KTM"}
     students = [
         {"name": "Jon", "age": 30, "email": "jon@email.com", "address": "KTM"},
-        {"name": "Ram", "age": 30, "email": "jon@email.com", "address": "KTM"},
-        {"name": "Jane", "age": 30, "email": "jon@email.com", "address": "KTM"},
-        {"name": "Hary", "age": 30, "email": "jon@email.com", "address": "KTM"},
+        {"name": "Ram", "age": 20, "email": "jon@email.com", "address": "KTM"},
+        {"name": "Jane", "age": 25, "email": "jon@email.com", "address": "KTM"},
+        {"name": "Hary", "age": 27, "email": "jon@email.com", "address": "KTM"},
     ]
     return render(request, "myapp/learning_context.html", context={"students": students, "student": student})
+
+
+def using_bootstrap(request):
+    students = [
+        {"name": "Jon", "age": 30, "email": "jon@email.com", "address": "KTM"},
+        {"name": "Ram", "age": 20, "email": "jon@email.com", "address": "KTM"},
+        {"name": "Jane", "age": 25, "email": "jon@email.com", "address": "KTM"},
+        {"name": "Hary", "age": 27, "email": "jon@email.com", "address": "KTM"},
+    ]
+    return render(request, template_name="myapp/using_bs.html", context={"students": students})

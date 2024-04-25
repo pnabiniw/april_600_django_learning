@@ -1,0 +1,8 @@
+# April 25
+
+DTL => Django Templating Language (similar to Jinja Templating)
+We can use three kinds of syntax in DTL
+1. Variables in double curly braces => {{ }}
+2. Tags in curly braces with percent => {% %}
+    - Tags can include load, for_loop and if conditions
+3. Filters using pipe symbol => |
