@@ -2,4 +2,5 @@
 2. Project Folders and URL Chaining (22 April)
 3. Django dynamic urls and template rendering (23 April)
 4. Static and context in template (24 April)
-5.
+5. Template Inheritance (25 April)
+6. Template Inheritance and Models (26 April)
