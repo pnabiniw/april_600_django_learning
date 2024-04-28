@@ -8,11 +8,62 @@
 CRUD ORMs in Django.
 Take "Student" as your table Model
 
-Read
+###############  Read ################################################
 1. Student.objects.all()
     => It returns a queryset of all the students in the table
     => Queryset is an iterable (list like object) containing table objects (rows)
     => <queryset[obj1, obj2, ...objn]>
     => Unlike a list, querysets are immutable
     => Indexing and slicing are possible in queryset but reverse indexing is not possible
+        qs = Student.objects.all()
+        print(qs[0])
     => We can also loop in this queryset
+    => qs = Student.objects.all()
+    for student in qs:
+        if student.name == "Jon":
+            pass
+        print(student.name)
+
+2. Student.objects.filter(name="Jon")
+    => It also returns a queryset
+
+    Student.objects.filter(name="Jon", age=30, address="KTM")
+
+3. Student.objects.get(name="Jon")
+    => It returns a student object (not queryset)
+
+    Possible cases while using "get"
+    => What if there are multiple rows with name "Jon", It raises "MultipleObjectsReturned" error
+    => What if there is no any object in a lookup
+        Student.objects.get(id=100), it raises DoeNotExist error
+    => So, it is always better to write .get() ORM inside try...except block
+
+
+################### Create ##################################
+1. Student.objects.create(name="Jane", age=30, email="jane@email.com", address="Ktm")
+
+2.  student = Student()
+    student.name = "Jane"
+    student.age = 30
+    student.email = "j@eail.com"
+    student.address = "KTM"
+    student.save()
+
+##################### Update #################################
+
+# update() method is used to update columns in a table
+# But update() is only applicable in querysets not in objects
+1. Student.objects.filter(id=2).update(name="Sita")
+    Student.objects.get(id=2).update(name="Sita")
+
+2. Student.objects.all().update(age=30)
+3. student = Student.objects.get(id=2)
+   student.age = 45
+   student.save()
+
+
+####################### Delete ##########################3
+1. Student.objects.all().delete()
+2. Student.objects.filter(name="Jon").delete()
+3. Student.objects.get(id=2).delete()
+4. Student.objects.filter(id=2).delete()
