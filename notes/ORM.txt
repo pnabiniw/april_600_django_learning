@@ -1,0 +1,18 @@
+28 April
+
+1. ORM stands for Object Relational Mapper / Mapping
+2. ORM is a way to query the database without having to write raw SQL queries. We use python itself
+   to query the database.
+3. SQLAlchemy is a famous ORM package for python projects. But, Django has it's ORM
+
+CRUD ORMs in Django.
+Take "Student" as your table Model
+
+Read
+1. Student.objects.all()
+    => It returns a queryset of all the students in the table
+    => Queryset is an iterable (list like object) containing table objects (rows)
+    => <queryset[obj1, obj2, ...objn]>
+    => Unlike a list, querysets are immutable
+    => Indexing and slicing are possible in queryset but reverse indexing is not possible
+    => We can also loop in this queryset

@@ -10,6 +10,7 @@ def student(request):
     #     {"name": "Hary", "age": 27, "email": "jon@email.com", "address": "KTM"},
     # ]
     students = Student.objects.all()
+    print(students[0])
     return render(request, template_name="commons/student.html", context={"students": students})
 
 

@@ -4,3 +4,4 @@
 4. Static and context in template (24 April)
 5. Template Inheritance (25 April)
 6. Template Inheritance and Models (26 April)
+7. ORM (28 April)
