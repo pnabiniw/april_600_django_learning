@@ -1,0 +1,27 @@
+29 April
+
+There are three model relations
+1. One-One
+2. One-Many
+3. Many-Many
+
+
+1. One-Many relation
+=> Iy is generally used for the case when we need to group items under certian category
+=> E.g. Classroom=>Student, FoodCategory=>Food, JobCategory=>Jobs, District=>Municipalities,
+        Team=>Players
+
+class Category:
+    name = models.CharField()
+
+
+class Food:
+    name = models.CharField()
+    price = models.FloatField()
+    category = models.ForeignKey(Food)
+
+
+2. One-One Relation
+=> One-one relation is useful when we need to map a single row of one table with a row
+of another table
+=> E.g. User=>UserProfile, BankLocker=>Customer
