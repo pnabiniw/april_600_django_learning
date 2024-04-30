@@ -1,7 +1,16 @@
 from django.db import models
 
 
-class Student(models.Model):
+class ClassRoom(models.Model):
+    name = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.name
+
+
+class Student(models.Model):  # default related name is "student_set" (modelname_set)
+    classroom = models.ForeignKey(ClassRoom, on_delete=models.CASCADE,
+                                  null=True, blank=True, related_name="students")
     name = models.CharField(max_length=20)
     age = models.IntegerField()
     email = models.EmailField(max_length=20)
@@ -9,3 +18,13 @@ class Student(models.Model):
 
     def __str__(self):
         return f"Student {self.name}"
+
+
+class StudentProfile(models.Model):  # default related name is "studentprofile"
+    student = models.OneToOneField(Student, on_delete=models.CASCADE)
+    phone = models.CharField(max_length=14)
+    bio = models.TextField(max_length=500)
+    profile_picture = models.FileField(null=True, blank=True)
+
+    def __str__(self):
+        return f"Profile of {self.student.name}"
