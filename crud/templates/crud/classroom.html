@@ -1,0 +1,40 @@
+{% extends 'commons/layouts/base.html' %}
+
+{% block title %}
+    Classroom
+{% endblock %}
+
+{% block content %}
+    {% include 'includes/nav.html' %}
+    <br>
+    <div class="container">
+        <form method="post" action="{% url 'crud_classroom' %}">
+            {% csrf_token %}
+            <label>Name:</label>
+            <input name="classroom_name">
+            <br><br>
+            <button type="submit">Add Classroom</button>
+        </form>
+        <br>
+        <h1>Classroom</h1>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for class in classrooms %}
+                <tr>
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td>{{ class.name }}</td>
+                    <td>{{ class.section }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}
