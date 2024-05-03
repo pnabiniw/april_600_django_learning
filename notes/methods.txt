@@ -1,0 +1,8 @@
+There are several HTTP methods. They are
+1. GET => If you are getting something from the database / server in response
+2. POST => If you are sending something to the server
+3. PUT
+4. PATCH
+5. DELETE
+6. HEAD
+7. OPTIONS

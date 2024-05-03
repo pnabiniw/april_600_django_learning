@@ -1,0 +1,19 @@
+{% extends 'commons/layouts/base.html' %}
+
+{% block title %}
+    Classroom Update
+{% endblock %}
+
+{% block content %}
+    {% include 'includes/nav.html' %}
+    <br>
+    <div class="container">
+    <h2>Update Classroom</h2><br>
+        <form method="post">
+            {% csrf_token %}
+            <input name="classroom_name" value="{{ classroom.name }}"><br><br>
+            <button type="submit" class="btn btn-primary">Update</button>
+            <a href="{% url 'crud_classroom' %}" class="btn btn-danger">Cancel</a>
+        </form>
+    </div>
+{% endblock %}

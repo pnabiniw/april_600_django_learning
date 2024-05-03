@@ -30,7 +30,10 @@
                 <tr>
                     <th scope="row">{{ forloop.counter }}</th>
                     <td>{{ class.name }}</td>
-                    <td>{{ class.section }}</td>
+                    <td>
+                        <a href="{% url 'crud_classroom_update' class.id %}" class="btn btn-primary">Update</a>
+                        <a href="#" class="btn btn-danger">Delete</a>
+                    </td>
                 </tr>
             {% endfor %}
             </tbody>
