@@ -6,6 +6,7 @@
     {% include 'includes/nav.html' %}
     <br>
     <div class="container">
+    <a href="{% url 'crud_add_student' %}" class="btn btn-success" style="float: right">Add Student</a>
         <h1>Student</h1><br>
         <table class="table table-striped">
         <thead>
@@ -15,6 +16,7 @@
             <th scope="col">Age</th>
             <th scope="col">Email</th>
             <th scope="col">Address</th>
+            <th scope="col">Classroom</th>
         </tr>
         </thead>
         <tbody>
@@ -25,6 +27,13 @@
                 <td>{{ student.age }}</td>
                 <td>{{ student.email }}</td>
                 <td>{{ student.address }}</td>
+                <td>
+                    {% if student.classroom %}
+                        {{ student.classroom.name }}
+                    {% else %}
+                        -
+                    {% endif %}
+                </td>
             </tr>
         {% endfor %}
         </tbody>

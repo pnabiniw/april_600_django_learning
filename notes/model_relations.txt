@@ -7,7 +7,7 @@ There are three model relations
 
 
 1. One-Many relation
-=> Iy is generally used for the case when we need to group items under certian category
+=> It is generally used for the case when we need to group items under certian category
 => E.g. Classroom=>Student, FoodCategory=>Food, JobCategory=>Jobs, District=>Municipalities,
         Team=>Players
 
@@ -18,7 +18,7 @@ class Category:
 class Food:
     name = models.CharField()
     price = models.FloatField()
-    category = models.ForeignKey(Food)
+    category = models.ForeignKey(Category)
 
 
 2. One-One Relation
