@@ -8,4 +8,5 @@
 8. Model Relations (29 April)
 9. Student/Classroom List, Create (30 April)
 10. Classroom Update (May 2)
-11. Classroom Delete (May 3)
+11. Classroom Delete and Student Add (May 3)
+12. Student Create (May 5)
