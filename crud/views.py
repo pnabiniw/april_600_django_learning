@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Student, ClassRoom
+from .models import Student, ClassRoom, StudentProfile
 
 
 def student(request):
@@ -42,10 +42,13 @@ def add_student(request):
         email = request.POST.get("email")
         address = request.POST.get("address")
         classroom_id = request.POST.get("classroom")
+        phone = request.POST.get("phone")
+        bio = request.POST.get("bio")
         if classroom_id != "null":
-            Student.objects.create(name=name, age=age, email=email, address=address, classroom_id=classroom_id)
+            s = Student.objects.create(name=name, age=age, email=email, address=address, classroom_id=classroom_id)
         else:
-            Student.objects.create(name=name, age=age, email=email, address=address)
+            s = Student.objects.create(name=name, age=age, email=email, address=address)
+        StudentProfile.objects.create(phone=phone, bio=bio, student=s)
         return redirect("crud_student")
     classrooms = ClassRoom.objects.all()
     return render(request, template_name="crud/add_student.html", context={"classrooms": classrooms})
