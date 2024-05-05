@@ -1,0 +1,54 @@
+{% extends "commons/layouts/base.html" %}
+{% load static %}
+
+{% block title %}
+    Student Detail
+{% endblock %}
+
+{% block content %}
+    {% include 'includes/nav.html' %}
+    <br>
+    <div class="container">
+        <br>
+        <div class="row">
+            <div class="col-md-4">
+                {% if student.studentprofile.profile_picture %}
+                    <img src="#" alt="profile_picture">
+                {% else %}
+                <img src="{% static 'crud/default.png' %}" style="height: 300px;width: 300px;" alt="profile_picture">
+                {% endif %}
+            </div>
+            <div class="col-md-8">
+                <h2>Student Detail</h2>
+                <table class="table table-striped">
+                    <tr>
+                        <td>Name</td>
+                        <td>{{ student.name }}</td>
+                    </tr>
+                    <tr>
+                        <td>Age</td>
+                        <td>{{ student.age }}</td>
+                    </tr>
+                    <tr>
+                        <td>Email</td>
+                        <td>{{ student.email }}</td>
+                    </tr>
+                    <tr>
+                        <td>Address</td>
+                        <td>{{ student.address }}</td>
+                    </tr>
+                    <tr>
+                        <td>Phone Number</td>
+                        <td>{{ student.studentprofile.phone }}</td>
+                    </tr>
+                    <tr>
+                        <td>Bio</td>
+                        <td>{{ student.studentprofile.bio }}</td>
+                    </tr>
+                </table>
+                <a href="#" class="btn btn-primary">Update</a>
+                <a href="{% url 'crud_student' %}" class="btn btn-outline-success">Back</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

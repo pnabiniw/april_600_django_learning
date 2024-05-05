@@ -52,3 +52,17 @@ def add_student(request):
         return redirect("crud_student")
     classrooms = ClassRoom.objects.all()
     return render(request, template_name="crud/add_student.html", context={"classrooms": classrooms})
+
+
+def detail_student(request, id):
+    s = Student.objects.get(id=id)
+    return render(request, template_name="crud/detail_student.html", context={"student": s})
+
+
+def delete_student(request, id):
+    s = Student.objects.get(id=id)
+    if request.method == "POST":
+        s.delete()
+        return redirect("crud_student")
+    return render(request, template_name="crud/delete_student.html", context={"student": s})
+
