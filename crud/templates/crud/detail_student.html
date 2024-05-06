@@ -38,6 +38,10 @@
                         <td>{{ student.address }}</td>
                     </tr>
                     <tr>
+                        <td>Classroom</td>
+                        <td>{{ student.classroom.name | title }}</td>
+                    </tr>
+                    <tr>
                         <td>Phone Number</td>
                         <td>{{ student.studentprofile.phone }}</td>
                     </tr>
@@ -46,7 +50,7 @@
                         <td>{{ student.studentprofile.bio }}</td>
                     </tr>
                 </table>
-                <a href="#" class="btn btn-primary">Update</a>
+                <a href="{% url 'update_student' student.id %}" class="btn btn-primary">Update</a>
                 <a href="{% url 'crud_student' %}" class="btn btn-outline-success">Back</a>
             </div>
         </div>

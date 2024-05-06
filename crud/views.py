@@ -66,3 +66,23 @@ def delete_student(request, id):
         return redirect("crud_student")
     return render(request, template_name="crud/delete_student.html", context={"student": s})
 
+
+def update_student(request, id):
+    print(id)
+    s = Student.objects.get(id=id)
+    if request.method == "POST":
+        name = request.POST.get("name")
+        age = request.POST.get("age")
+        email = request.POST.get("email")
+        address = request.POST.get("address")
+        classroom_id = request.POST.get("classroom")
+        print(classroom_id)
+        phone = request.POST.get("phone")
+        bio = request.POST.get("bio")
+        Student.objects.filter(id=id).update(name=name, age=age, email=email, address=address,
+                                             classroom_id=classroom_id)
+        sp, created = StudentProfile.objects.update_or_create(student=s, defaults={"phone": phone, "bio": bio})
+        return redirect("detail_student", id)
+    classrooms = ClassRoom.objects.all()
+    return render(request, template_name="crud/update_student.html", context={"student": s,
+                                                                              "classrooms": classrooms})
