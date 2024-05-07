@@ -76,12 +76,15 @@ def update_student(request, id):
         email = request.POST.get("email")
         address = request.POST.get("address")
         classroom_id = request.POST.get("classroom")
-        print(classroom_id)
         phone = request.POST.get("phone")
         bio = request.POST.get("bio")
+        pp = request.FILES.get("profile_picture")  # None
         Student.objects.filter(id=id).update(name=name, age=age, email=email, address=address,
                                              classroom_id=classroom_id)
         sp, created = StudentProfile.objects.update_or_create(student=s, defaults={"phone": phone, "bio": bio})
+        if pp:
+            sp.profile_picture = pp
+            sp.save()
         return redirect("detail_student", id)
     classrooms = ClassRoom.objects.all()
     return render(request, template_name="crud/update_student.html", context={"student": s,

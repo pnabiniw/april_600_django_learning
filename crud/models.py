@@ -24,7 +24,7 @@ class StudentProfile(models.Model):  # default related name is "studentprofile"
     student = models.OneToOneField(Student, on_delete=models.CASCADE)
     phone = models.CharField(max_length=14)
     bio = models.TextField(max_length=500)
-    profile_picture = models.FileField(null=True, blank=True)
+    profile_picture = models.FileField(null=True, blank=True, upload_to="profile_pictures")
 
     def __str__(self):
         return f"Profile of {self.student.name}"

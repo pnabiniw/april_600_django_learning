@@ -14,13 +14,17 @@
             <div class="row">
                 <div class="col-md-4">
                     {% if student.studentprofile.profile_picture %}
-                        <img src="#" style="height: 300px; width: 300px" alt="profile_picture">
+                        <img src="{{ student.studentprofile.profile_picture.url }}" style="height: 300px; width: 300px"
+                             alt="profile_picture">
                     {% else %}
                         <img src="{% static 'crud/default.png' %}" style="height: 300px; width: 300px"
                              alt="profile_picture">
                     {% endif %}
                     <br>
-                    <input type="file" name="profile_picture">
+                <input type="file" name="profile_picture">
+                    {% if student.studentprofile.profile_picture %}
+                        <a href="{{ student.studentprofile.profile_picture.url }}" target="_blank">{{ student.studentprofile.profile_picture }}</a>
+                    {% endif %}
                 </div>
                 <div class="col-md-8">
                     <h2>Student Update</h2>
