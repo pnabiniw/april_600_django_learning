@@ -67,3 +67,11 @@ Take "Student" as your table Model
 2. Student.objects.filter(name="Jon").delete()
 3. Student.objects.get(id=2).delete()
 4. Student.objects.filter(id=2).delete()
+
+
+
+######## update_or_create ################
+Take StudentProfile as Model
+
+sp, created = StudentProfile.objects.update_or_create(student=s, defaults={"phone": phone, "bio": "bio"})
+=> update_or_create returns a tuple. Tuple of object and a boolean

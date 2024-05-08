@@ -23,3 +23,7 @@ def classroom(request):
         {"name": "Five", "section": "B"},
     ]
     return render(request, "commons/classroom.html", {"classrooms": classrooms})
+
+
+def not_found_404(r, *args, **kwargs):
+    return render(r, template_name='404_not_found.html')

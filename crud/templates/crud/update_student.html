@@ -21,9 +21,11 @@
                              alt="profile_picture">
                     {% endif %}
                     <br>
-                <input type="file" name="profile_picture">
+                <input type="file" name="profile_picture" accept=".png, .jpg, .jpeg">
                     {% if student.studentprofile.profile_picture %}
                         <a href="{{ student.studentprofile.profile_picture.url }}" target="_blank">{{ student.studentprofile.profile_picture }}</a>
+                        <input type="checkbox" name="pp_clear" id="profile_picture-clear_id">
+                        <label for="profile_picture-clear_id">Clear</label></span><br>
                     {% endif %}
                 </div>
                 <div class="col-md-8">

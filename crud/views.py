@@ -79,12 +79,19 @@ def update_student(request, id):
         phone = request.POST.get("phone")
         bio = request.POST.get("bio")
         pp = request.FILES.get("profile_picture")  # None
+        pp_clear = request.POST.get("pp_clear")
         Student.objects.filter(id=id).update(name=name, age=age, email=email, address=address,
                                              classroom_id=classroom_id)
         sp, created = StudentProfile.objects.update_or_create(student=s, defaults={"phone": phone, "bio": bio})
+
         if pp:
+            extension = pp.name.split(".")[-1]   # nfdkjhfds.png => ["nfdkjhfds", "png"]
+            if extension not in ["jpg", "jpeg", "png", "PNG", "JPG"]:
+                return redirect("update_student", id)
             sp.profile_picture = pp
-            sp.save()
+        if pp_clear == "on":
+            sp.profile_picture = None
+        sp.save()
         return redirect("detail_student", id)
     classrooms = ClassRoom.objects.all()
     return render(request, template_name="crud/update_student.html", context={"student": s,
