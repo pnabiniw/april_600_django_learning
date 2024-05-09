@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     "myapp",
     "commons",
     "crud",
-    "accounts"
+    "accounts",
+    "quiz"
 ]
 
 MIDDLEWARE = [

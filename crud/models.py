@@ -28,21 +28,3 @@ class StudentProfile(models.Model):  # default related name is "studentprofile"
 
     def __str__(self):
         return f"Profile of {self.student.name}"
-
-# class Question(models.Model):
-#     question = CharField()
-#     options = ArrayField()
-#     answer = Charfield
-#     active = Bool()
-#     difficulty = PosInt()
-#
-# class Quiz(models.Model):
-#     name = CharField()
-#     questions = ManyToMany()
-#
-#
-# class UserQuizAttempt():
-#     quiz = Fk
-#     question =
-#     answer =
-#     is_correct =

@@ -10,6 +10,7 @@ urlpatterns = [
     path("commons/", include("commons.urls")),
     path('crud/', include('crud.urls')),
     path('accounts/', include('accounts.urls')),
+    path('quiz/', include('quiz.urls')),
     path("", include("myapp.urls"))  # URL Chaining
 ]
 
