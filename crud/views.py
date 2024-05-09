@@ -1,12 +1,15 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 from .models import Student, ClassRoom, StudentProfile
 
 
+@login_required
 def student(request):
     students = Student.objects.all().order_by('-id')
     return render(request, template_name="crud/student.html", context={"students": students})
 
 
+@login_required
 def classroom(request):
     if request.method == "POST":
         print(request.POST)
@@ -17,6 +20,7 @@ def classroom(request):
     return render(request, template_name="crud/classroom.html", context={"classrooms": classrooms})
 
 
+@login_required
 def classroom_update(request, id):
     c = ClassRoom.objects.get(id=id)
     if request.method == "POST":
@@ -27,6 +31,7 @@ def classroom_update(request, id):
     return render(request, template_name="crud/classroom_update.html", context={"classroom": c})
 
 
+@login_required
 def classroom_delete(request, id):
     c = ClassRoom.objects.get(id=id)
     if request.method == "POST":
@@ -35,6 +40,7 @@ def classroom_delete(request, id):
     return render(request, template_name="crud/classroom_delete.html", context={"classroom": c})
 
 
+@login_required
 def add_student(request):
     if request.method == "POST":
         name = request.POST.get("name")
@@ -54,11 +60,13 @@ def add_student(request):
     return render(request, template_name="crud/add_student.html", context={"classrooms": classrooms})
 
 
+@login_required
 def detail_student(request, id):
     s = Student.objects.get(id=id)
     return render(request, template_name="crud/detail_student.html", context={"student": s})
 
 
+@login_required
 def delete_student(request, id):
     s = Student.objects.get(id=id)
     if request.method == "POST":
@@ -67,6 +75,7 @@ def delete_student(request, id):
     return render(request, template_name="crud/delete_student.html", context={"student": s})
 
 
+@login_required
 def update_student(request, id):
     print(id)
     s = Student.objects.get(id=id)
