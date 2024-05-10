@@ -75,3 +75,76 @@ Take StudentProfile as Model
 
 sp, created = StudentProfile.objects.update_or_create(student=s, defaults={"phone": phone, "bio": "bio"})
 => update_or_create returns a tuple. Tuple of object and a boolean
+
+
+
+################## Advance ORMs ###############################
+persons = Person.objects.all()
+Person.objects.values('name', 'age')
+Person.objects.all()[:10]
+Person.objects.all()[5:10]
+Person.objects.filter(age__gt=18)
+Person.objects.filter(age__gte=18)
+Person.objects.filter(age__lt=18)
+Person.objects.filter(age__lte=18)
+Person.objects.exclude(age=18)
+Person.objects.filter(age__range=(10, 20))
+Person.objects.filter(name__icontains='A')
+Person.objects.filter(name__contains='A')
+Person.objects.filter(name__istartswith='A')
+Person.objects.filter(name__startswith='A')
+Person.objects.filter(name__iendswith='A')
+Person.objects.filter(name__endswith='A')
+Person.objects.filter(id__in=[1, 2])
+Person.objects.filter(gender='male', age__gt=25)
+
+from django.db.models import Q
+Person.objects.filter(Q(gender='male') | Q(age__gt=25))
+
+Person.objects.filter(age__isnull=True)
+Person.objects.filter(age__isnull=False)
+Person.objects.order_by('age')
+Person.objects.order_by('-age')
+
+
+from django.db.models import Min
+Person.objects.all().aggregate(Min('age'))
+
+from django.db.models import Max
+Person.objects.all().aggregate(Max('age'))
+
+from django.db.models import Avg
+Person.objects.all().aggregate(Avg('age'))
+
+from django.db.models import Sum
+Person.objects.all().aggregate(Sum('age'))
+
+Person.objects.count()
+Book.objects.select_related('publisher').get(id=1)
+publisher = Publisher.objects.prefetch_related('book_set').get(id=1)
+publisher.book_set.all()
+
+
+
+############ Many to Many ORMs #################
+Quiz model has ManytoMany relation with Question model with related name "quizzes"
+
+1. q1 = Question.objects.create()
+1. q2 = Question.objects.create()
+1. q3 = Question.objects.create()
+2. quiz = Quiz.objects.create(title="quiz1")
+3. quiz.questions.add(q1)
+3. quiz.questions.add(q2)
+3. quiz.questions.add(q3)
+=> quiz.questions.all()  # Questions queryset
+
+# reverse relation
+=> q1.quizzes.add(quiz)
+=> q1.quizzes.all()  # Quiz queryset
+
+
+# Accessing through table
+Through = Quiz.questions.through
+Through.objects.all()
+Through.objects.filter(quiz=quiz)
+Through.objects.filter(question=q)
