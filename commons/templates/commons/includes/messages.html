@@ -1,0 +1,25 @@
+{% for message in messages %}
+    <div class="notification-container" id="notification">
+        {{ message }}
+        <span class="close-btn" onclick="hideNotification()">×</span>
+    </div>
+
+    <script>
+        var notification = document.getElementById('notification');
+        notification.classList.add('show');
+
+        // Remove the 'show' class and fade out after a delay (e.g., 3 seconds)
+        setTimeout(function () {
+            hideNotification();
+        }, 3000); // 3000 milliseconds (3 seconds)
+
+        function hideNotification() {
+        var notification = document.getElementById('notification');
+        notification.classList.remove('show');
+        notification.addEventListener('transitionend', function () {
+            // Remove the notification from the DOM after fading out
+            notification.parentNode.removeChild(notification);
+        });
+    }
+    </script>
+{% endfor %}

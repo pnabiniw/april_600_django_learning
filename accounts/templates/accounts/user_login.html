@@ -4,8 +4,61 @@
     <meta charset="UTF-8">
     <title>User Login</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Style for notification container */
+        .notification-container {
+            position: fixed;
+            height: auto;
+            bottom: -200px; /* Start position below the screen */
+            left: 50%;
+            transform: translateX(-50%);
+        {% for message in messages %}
+            {% if message.tags == "alert-success" %}
+                background-color: #097d2f;
+                {% else %}
+                background-color: #bf0a31;
+            {% endif %}
+        {% endfor %}
+
+            text-align: center;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            width: 30%;
+            font-size: 1.2rem;
+            opacity: 0; /* Initially hidden */
+            transition: opacity 0.3s ease-in-out, bottom 0.5s ease-in-out;
+            z-index: 999; /* Ensure it's above other content */
+        }
+
+        /* Animation for sliding in from bottom */
+        .notification-container.show {
+            bottom: 40px; /* Position to show on the screen */
+            opacity: 1;
+        }
+
+        /* Animation for fading out */
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
+            }
+        }
+
+        /* Style for close button */
+        .close-btn {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            cursor: pointer;
+            color: #fff;
+        }
+    </style>
 </head>
 <body class="h-full">
+{% include "commons/includes/messages.html" %}
 <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
     <div class="sm:mx-auto sm:w-full sm:max-w-sm">
         <img class="mx-auto h-10 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"

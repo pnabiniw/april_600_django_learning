@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Animated Notification</title>
+<style>
+    /* Style for notification container */
+    .notification-container {
+        position: fixed;
+        bottom: -100px; /* Start position below the screen */
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #333;
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 5px;
+        opacity: 0; /* Initially hidden */
+        transition: opacity 0.3s ease-in-out, bottom 0.5s ease-in-out;
+        z-index: 999; /* Ensure it's above other content */
+    }
+
+    /* Animation for sliding in from bottom */
+    .notification-container.show {
+        bottom: 20px; /* Position to show on the screen */
+        opacity: 1;
+    }
+
+    /* Animation for fading out */
+    @keyframes fadeOut {
+        from {
+            opacity: 1;
+        }
+        to {
+            opacity: 0;
+        }
+    }
+
+    /* Style for close button */
+    .close-btn {
+        position: absolute;
+        top: 5px;
+        right: 10px;
+        cursor: pointer;
+        color: #fff;
+    }
+</style>
+</head>
+<body>
+    <!-- Notification container -->
+    <div class="notification-container" id="notification">
+        Animated Notification
+        <span class="close-btn" onclick="hideNotification()">×</span>
+    </div>
+
+    <!-- Button to trigger the notification -->
+    <button onclick="showNotification()">Show Notification</button>
+
+    <!-- JavaScript to handle showing and hiding the notification -->
+    <script>
+        function showNotification() {
+            var notification = document.getElementById('notification');
+            console.log(notification)
+            notification.classList.add('show');
+
+            // Remove the 'show' class and fade out after a delay (e.g., 3 seconds)
+            setTimeout(function() {
+                hideNotification();
+            }, 3000); // 3000 milliseconds (3 seconds)
+        }
+
+        function hideNotification() {
+            var notification = document.getElementById('notification');
+            notification.classList.remove('show');
+        }
+    </script>
+</body>
+</html>
