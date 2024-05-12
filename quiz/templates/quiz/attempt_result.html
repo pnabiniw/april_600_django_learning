@@ -1,0 +1,99 @@
+{% extends "commons/layouts/base.html" %}
+{% block title %}
+    Quiz Result
+{% endblock %}
+
+{% block content %}
+    {% include 'includes/nav.html' %}
+    <br>
+    <div class="container">
+        <h2>Quiz Result</h2>
+        <br>
+        <div style="font-size: 1.2rem">
+            <b>Total Questions</b>: &nbsp; {{ records | length }}<br>
+            <b>Correct Answers</b>: &nbsp; {{ total_score }}<br>
+            <b>Percentage:</b> &nbsp; {{ percentage }}<br>
+        </div><br>
+        {% for record in records %}
+            <div>
+                <h4>{{ record.question.question }}</h4>
+                <div>
+                    {% if record.question.correct_answer == record.question.option1 %}
+                        <div style="background-color: darkgreen; color: white; width: 20%; border-radius: 10px; padding: 2px">
+                            <input type="radio" checked disabled>
+                            <label>{{ record.question.option1 }}</label>
+                        </div>
+                    {% else %}
+                        {% if record.answer == record.question.option1 %}
+                            <div style="background-color: red; color: white; width: 20%; border-radius: 10px; padding: 2px">
+                                <input type="radio" disabled>
+                                <label>{{ record.question.option1 }}</label>
+                            </div>
+                        {% else %}
+                            <input type="radio" disabled>
+                            <label>{{ record.question.option1 }}</label>
+                        {% endif %}
+                    {% endif %}
+
+                </div>
+                <div>
+                    {% if record.question.correct_answer == record.question.option2 %}
+                        <div style="background-color: darkgreen; color: white; width: 20%; border-radius: 10px; padding: 2px">
+                            <input type="radio" checked disabled>
+                            <label>{{ record.question.option2 }}</label>
+                        </div>
+                    {% else %}
+                        {% if record.answer == record.question.option2 %}
+                            <div style="background-color: red; color: white; width: 20%; border-radius: 10px; padding: 2px">
+                                <input type="radio" disabled>
+                                <label>{{ record.question.option2 }}</label>
+                            </div>
+                        {% else %}
+                            <input type="radio" disabled>
+                            <label>{{ record.question.option2 }}</label>
+                        {% endif %}
+                    {% endif %}
+
+                </div>
+                <div>
+                    {% if record.question.correct_answer == record.question.option3 %}
+                        <div style="background-color: darkgreen; color: white; width: 20%; border-radius: 10px; padding: 2px">
+                            <input type="radio" checked disabled>
+                            <label>{{ record.question.option3 }}</label>
+                        </div>
+                    {% else %}
+                        {% if record.answer == record.question.option3 %}
+                            <div style="background-color: red; color: white; width: 20%; border-radius: 10px; padding: 2px">
+                                <input type="radio" disabled>
+                                <label>{{ record.question.option3 }}</label>
+                            </div>
+                        {% else %}
+                            <input type="radio" disabled>
+                            <label>{{ record.question.option3 }}</label>
+                        {% endif %}
+                    {% endif %}
+
+                </div>
+                <div>
+                    {% if record.question.correct_answer == record.question.option4 %}
+                        <div style="background-color: darkgreen; color: white; width: 20%; border-radius: 10px; padding: 2px">
+                            <input type="radio" checked disabled>
+                            <label>{{ record.question.option4 }}</label>
+                        </div>
+                    {% else %}
+                        {% if record.answer == record.question.option4 %}
+                            <div style="background-color: red; color: white; width: 20%; border-radius: 10px; padding: 2px">
+                                <input type="radio" disabled>
+                                <label>{{ record.question.option4 }}</label>
+                            </div>
+                        {% else %}
+                            <input type="radio" disabled>
+                            <label>{{ record.question.option4 }}</label>
+                        {% endif %}
+                    {% endif %}
+
+                </div>
+            </div><hr><br>
+        {% endfor %}
+    </div>
+{% endblock %}

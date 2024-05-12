@@ -1,0 +1,29 @@
+{% extends 'commons/layouts/base.html' %}
+
+{% block title %}Quiz{% endblock %}
+
+
+{% block content %}
+    {% include 'includes/nav.html' %}
+    <br><br>
+    <div class="container">
+        <h2>All Quizzes</h2><br>
+        <table class="table table-striped" style="font-size: 1.2rem">
+            {% for quiz in quizzes %}
+                <tr style="text-align: center">
+                    <td>{{ forloop.counter }}.</td>
+                    <td><p>{{ quiz.title }}</p></td>
+                    <td>
+                        <a href="{% url 'start_quiz' quiz.id %}" class="quiz_start_btn">
+                            Start
+                        </a>
+                        {% if quiz.is_attempted %}
+                        <a href="{% url 'attempt_history' quiz.id %}" class="quiz_attempts_btn">Attempt History</a>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+{% endblock %}

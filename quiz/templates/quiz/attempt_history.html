@@ -1,0 +1,27 @@
+{% extends "commons/layouts/base.html" %}
+
+{% block title %}
+    Attempt History
+{% endblock %}
+
+{% block content %}
+    {% include 'includes/nav.html' %}
+    <div class="container">
+        {% if not attempts %}
+            <h3 style="margin-top: 100px; text-align: center">No attempts Yet !</h3>
+            {% else %}
+            <table class="table table-striped" style="font-size: 1.2rem">
+        <h2>Attempt History</h2>
+            {% for attempt in attempts %}
+                <tr>
+                <td>Attempt{{ forloop.counter }}</td>
+                <td>
+                    <a href="{% url 'attempt_result' attempt.id %}" class="btn btn-success">View Result</a>
+                </td>
+                </tr>
+            {% endfor %}
+        </table>
+        {% endif %}
+
+    </div>
+{% endblock %}

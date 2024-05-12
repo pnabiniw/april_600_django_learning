@@ -1,0 +1,39 @@
+{% extends "commons/layouts/base.html" %}
+
+{% block title %}Attempt Quiz{% endblock %}
+
+{% block content %}
+    {% include 'includes/nav.html' %}
+    <div class="container">
+        <br>
+        <h2>Quiz Attempt</h2><br>
+        <div>
+            <form method="post">
+                {% csrf_token %}
+                {% for question in questions %}
+                    <div>
+                        <h4>{{ question.question }}</h4>
+                        <div>
+                            <input required type="radio" value="{{ question.option1 }}" name="selected_option_{{ question.id }}">
+                            <label>{{ question.option1 }}</label>
+                        </div>
+                        <div>
+                            <input required type="radio" value="{{ question.option2 }}" name="selected_option_{{ question.id }}">
+                            <label>{{ question.option2 }}</label>
+                        </div>
+                        <div>
+                            <input required type="radio" value="{{ question.option3 }}" name="selected_option_{{ question.id }}">
+                            <label>{{ question.option3 }}</label>
+                        </div>
+                        <div>
+                            <input required type="radio" value="{{ question.option4 }}" name="selected_option_{{ question.id }}">
+                            <label>{{ question.option4 }}</label>
+                        </div>
+                    </div><hr><br>
+                {% endfor %}
+                <br>
+                <button class="btn btn-success">Submit</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

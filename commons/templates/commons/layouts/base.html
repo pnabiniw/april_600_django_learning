@@ -20,7 +20,7 @@
         {% for message in messages %}
             {% if message.tags == "alert-success" %}
                 background-color: #097d2f;
-                {% else %}
+            {% else %}
                 background-color: #bf0a31;
             {% endif %}
         {% endfor %}
@@ -59,6 +59,36 @@
             right: 10px;
             cursor: pointer;
             color: #fff;
+        }
+
+        .quiz_start_btn {
+            color: white;
+            background-color: #03870c;
+            padding: 10px;
+            border-radius: 10px;
+            text-decoration: none;
+            margin: 10px;
+        }
+
+        .quiz_start_btn:hover {
+            background-color: #4b9450;
+        }
+
+        .quiz_attempts_btn {
+            color: #03870c;
+            padding: 10px;
+            border-radius: 10px;
+            text-decoration: none;
+            margin-right: 5px;
+            margin-top: 5px;
+            border: solid 1px;
+            border-color: #03870c;
+            transition: background-color 0.3s ease;
+        }
+
+        .quiz_attempts_btn:hover {
+            background-color: #03870c;
+            color: white;
         }
     </style>
 </head>

@@ -15,3 +15,4 @@
 15. Revision Class (May 8)
 16. Many to Many and quiz models. (May 9)
 17. Advance ORMs and messages (May 10)
+18. May 12
