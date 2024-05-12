@@ -1,6 +1,7 @@
 from django.urls import path
 from .views import quiz_home, start_quiz, attempt_quiz, user_quiz_attempts, user_attempt_result
 
+
 urlpatterns = [
     path('', quiz_home, name="quiz_home"),
     path("start/<int:id>/", start_quiz, name="start_quiz"),

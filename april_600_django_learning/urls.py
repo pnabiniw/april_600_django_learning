@@ -11,6 +11,7 @@ urlpatterns = [
     path('crud/', include('crud.urls')),
     path('accounts/', include('accounts.urls')),
     path('quiz/', include('quiz.urls')),
+    path("classbased/", include("classbased.urls", namespace="classbased")),
     path("", include("myapp.urls"))  # URL Chaining
 ]
 

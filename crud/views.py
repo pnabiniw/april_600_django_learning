@@ -5,7 +5,16 @@ from .models import Student, ClassRoom, StudentProfile
 
 @login_required
 def student(request):
+    import json
     students = Student.objects.all().order_by('-id')
+    with open("crud/counter.json", "r") as fp:
+        data = fp.read()
+        data = json.loads(data)
+    data['crud_student_counter'] += 1
+    with open("crud/counter.json", "w") as fp:
+        data = json.dumps(data)
+        fp.write(data)
+
     return render(request, template_name="crud/student.html", context={"students": students})
 
 
