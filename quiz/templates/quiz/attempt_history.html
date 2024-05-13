@@ -14,7 +14,7 @@
         <h2>Attempt History</h2>
             {% for attempt in attempts %}
                 <tr>
-                <td>Attempt{{ forloop.counter }}</td>
+                <td>Attempt{{ forloop.revcounter }}</td>
                 <td>
                     <a href="{% url 'attempt_result' attempt.id %}" class="btn btn-success">View Result</a>
                 </td>

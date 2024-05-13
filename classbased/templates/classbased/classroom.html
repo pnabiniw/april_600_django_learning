@@ -1,0 +1,38 @@
+{% extends "commons/layouts/base.html" %}
+
+{% block title %}Classroom{% endblock %}
+
+{% block content %}
+    {% include 'classbased/includes/nav.html' %}
+    <br>
+    <div class="container">
+        <h2>Classroom</h2>
+    <br>
+    <form method="post">
+        {% csrf_token %}
+        {{ form }}<br>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form><br>
+    <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for class in classrooms %}
+                <tr>
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td>{{ class.name }}</td>
+                    <td>
+                        <a href="#" class="btn btn-primary">Update</a>
+                        <a href="#" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
