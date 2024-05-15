@@ -16,3 +16,5 @@
 16. Many to Many and quiz models. (May 9)
 17. Advance ORMs and messages (May 10)
 18. Classbased (May 12)
+19. Django Forms (May 13)
+20. Classroom and Student CRUD (May 15)

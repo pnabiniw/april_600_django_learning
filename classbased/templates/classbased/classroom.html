@@ -8,7 +8,7 @@
     <div class="container">
         <h2>Classroom</h2>
     <br>
-    <form method="post">
+    <form method="post" class="form-control">
         {% csrf_token %}
         {{ form }}<br>
         <button type="submit" class="btn btn-primary">Submit</button>
@@ -27,8 +27,8 @@
                     <th scope="row">{{ forloop.counter }}</th>
                     <td>{{ class.name }}</td>
                     <td>
-                        <a href="#" class="btn btn-primary">Update</a>
-                        <a href="#" class="btn btn-danger">Delete</a>
+                        <a href="{% url 'classbased:classroom_update' class.pk %}" class="btn btn-primary">Update</a>
+                        <a href="{% url 'classbased:classroom_delete' class.pk %}" class="btn btn-danger">Delete</a>
                     </td>
                 </tr>
             {% endfor %}
