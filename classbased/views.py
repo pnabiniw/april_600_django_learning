@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy, reverse
-from crud.models import ClassRoom
-from django.views.generic import TemplateView, ListView, CreateView, UpdateView, DeleteView
+from crud.models import ClassRoom, Student, StudentProfile
+from django.views.generic import TemplateView, ListView, CreateView, UpdateView, DeleteView, DetailView
 from django.contrib import messages
-from .forms import ClassRoomForm, ClassRoomModelForm
+from .forms import ClassRoomForm, ClassRoomModelForm, StudentModelForm
 
 
 class HomeView(TemplateView):
@@ -97,3 +97,36 @@ class ClassroomDeleteView(DeleteView):
         else:
             messages.error(self.request, "Something went wrong !")
             return self.form_invalid(form)
+
+
+class StudentListView(ListView):
+    queryset = Student.objects.all()
+    template_name = "classbased/student.html"
+
+
+class StudentCreateView(CreateView):
+    model = Student
+    template_name = "classbased/student_create.html"
+    form_class = StudentModelForm
+    success_url = reverse_lazy("classbased:student")
+    next_form = ClassRoomModelForm
+
+
+    def form_valid(self, form):
+        self.object = form.save()
+        student = self.object
+        bio = form.cleaned_data['bio']
+        phone = form.cleaned_data["phone_number"]
+        StudentProfile.objects.create(student=student, bio=bio, phone=phone)
+        messages.success(self.request, "Student added successfully !")
+        return redirect("classbased:student")
+
+    def form_invalid(self, form):
+        messages.error(self.request, "Could not create student!")
+        return super().form_invalid(form)
+
+
+class StudentDetailView(DetailView):
+    queryset = Student.objects.all()
+    template_name = "classbased/student_detail.html"
+    context_object_name = "student"

@@ -18,3 +18,4 @@
 18. Classbased (May 12)
 19. Django Forms (May 13)
 20. Classroom and Student CRUD (May 15)
+21. Student Classbased CRUD (May 16)

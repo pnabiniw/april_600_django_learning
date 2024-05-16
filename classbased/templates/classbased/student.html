@@ -1,0 +1,50 @@
+{% extends "commons/layouts/base.html" %}
+
+{% block title %}
+    Student
+{% endblock %}
+
+{% block content %}
+    {% include "classbased/includes/nav.html" %}
+    <br>
+    <div class="container">
+        <a href="{% url 'classbased:student_create' %}" style="float: right" class="btn btn-success">Add Student</a>
+        <h2>Student</h2>
+        <br>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Age</th>
+                <th scope="col">Email</th>
+                <th scope="col">Address</th>
+                <th scope="col">Classroom</th>
+                <th scope="col">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for student in student_list   %}
+                <tr>
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td>{{ student.name }}</td>
+                    <td>{{ student.age }}</td>
+                    <td>{{ student.email }}</td>
+                    <td>{{ student.address }}</td>
+                    <td>
+                        {% if student.classroom %}
+                            {{ student.classroom.name }}
+                        {% else %}
+                            -
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="{% url 'classbased:student_detail' student.id %}" class="btn btn-primary">Detail</a>
+                        <a href="#" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
