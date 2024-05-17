@@ -10,9 +10,12 @@
     <div class="container">
         <h2>Add Student</h2>
     <br>
-    <form method="post" class="form-control">
+    <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
+        <div class="form-group" style="width: 50%">
+            {{ form }}
+        </div>
+
         <br>
         <button type="submit" class="btn btn-success">Submit</button>
     </form>

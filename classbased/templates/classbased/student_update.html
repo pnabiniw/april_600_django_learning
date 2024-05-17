@@ -1,0 +1,41 @@
+{% extends "commons/layouts/base.html" %}
+{% load static %}
+
+{% block title %}
+    Student Update
+{% endblock %}
+
+{% block content %}
+    {% include "classbased/includes/nav.html" %}
+    <br><br>
+    <div class="container">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-md-4">
+                    {% if student.studentprofile.profile_picture %}
+                        <img src="{{ student.studentprofile.profile_picture.url }}" style="height: 300px; width: 300px"
+                             alt="profile_picture">
+                    {% else %}
+                        <img src="{% static 'crud/default.png' %}" style="height: 300px; width: 300px"
+                             alt="profile_picture">
+                    {% endif %}
+                    <br>
+{#                <input type="file" name="profile_picture" accept=".png, .jpg, .jpeg">#}
+{#                    {% if student.studentprofile.profile_picture %}#}
+{#                        <a href="{{ student.studentprofile.profile_picture.url }}" target="_blank">{{ student.studentprofile.profile_picture }}</a>#}
+{#                        <input type="checkbox" name="pp_clear" id="profile_picture-clear_id">#}
+{#                        <label for="profile_picture-clear_id">Clear</label></span><br>#}
+{#                    {% endif %}#}
+                </div>
+                <div class="col-md-8">
+                    <h2>Student Update</h2>
+                    {{ form }}
+                    <br>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <a href="{% url 'classbased:student_detail' student.id %}" class="btn btn-outline-primary">Back</a>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}

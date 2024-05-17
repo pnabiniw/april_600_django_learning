@@ -50,7 +50,7 @@
                         <td>{{ student.studentprofile.bio }}</td>
                     </tr>
                 </table>
-                <a href="#" class="btn btn-primary">Update</a>
+                <a href="{% url 'classbased:student_update' student.id %}" class="btn btn-primary">Update</a>
                 <a href="{% url 'classbased:student' %}" class="btn btn-outline-success">Back</a>
             </div>
         </div>

@@ -111,7 +111,6 @@ class StudentCreateView(CreateView):
     success_url = reverse_lazy("classbased:student")
     next_form = ClassRoomModelForm
 
-
     def form_valid(self, form):
         self.object = form.save()
         student = self.object
@@ -130,3 +129,41 @@ class StudentDetailView(DetailView):
     queryset = Student.objects.all()
     template_name = "classbased/student_detail.html"
     context_object_name = "student"
+
+
+class StudentUpdateView(UpdateView):
+    queryset = Student.objects.all()
+    template_name = "classbased/student_update.html"
+    form_class = StudentModelForm
+
+    # success_url = reverse_lazy("classbased:student_detail")
+
+    def get_success_url(self):
+        return reverse_lazy("classbased:student_detail", self.get_object().id)
+
+    def get_initial(self):
+        student = self.get_object()
+        initial = super().get_initial()
+        try:
+            profile = StudentProfile.objects.get(student=student)
+        except:
+            pass
+        else:
+            initial["bio"] = profile.bio
+            initial["phone_number"] = profile.phone
+            initial["profile_picture"] = profile.profile_picture
+        return initial
+
+    def form_valid(self, form):
+        bio = form.cleaned_data.pop("bio")
+        phone_number = form.cleaned_data.pop("phone_number")
+        pp = form.cleaned_data.pop("profile_picture")
+        student = form.save()
+        # (<sp_object>, False)
+        sp, _ = StudentProfile.objects.update_or_create(student=student,
+                                                        defaults={"bio": bio, "phone": phone_number})
+        if pp:
+            sp.profile_picture = pp
+            sp.save()
+        return redirect("classbased:student_detail", student.id)
+
