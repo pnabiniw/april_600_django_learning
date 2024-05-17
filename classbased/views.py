@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy, reverse
+from django.http import JsonResponse
 from crud.models import ClassRoom, Student, StudentProfile
 from django.views.generic import TemplateView, ListView, CreateView, UpdateView, DeleteView, DetailView
 from django.contrib import messages
@@ -167,3 +168,16 @@ class StudentUpdateView(UpdateView):
             sp.save()
         return redirect("classbased:student_detail", student.id)
 
+
+def student_detail_api_view(request, id):
+    try:
+        student = Student.objects.get(id=id)
+    except:
+        return JsonResponse({"detail": "Not Found"})
+    response = {
+        "name": student.name,
+        "age": student.age,
+        "email": student.email,
+        "address": student.address
+    }
+    return JsonResponse(response)
