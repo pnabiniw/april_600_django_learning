@@ -30,9 +30,16 @@ class HomeView(TemplateView):
 
 
 class ClassRoomView(ListView):
-    queryset = ClassRoom.objects.all()
     template_name = "classbased/classroom.html"
     context_object_name = "classrooms"
+    paginate_by = 4
+
+    def get_queryset(self):
+        filters = {}
+        search = self.request.GET.get("search")
+        if search:
+            filters.update(name__istartswith=search)
+        return ClassRoom.objects.filter(**filters)
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)

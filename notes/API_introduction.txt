@@ -24,3 +24,11 @@ There are two types of API calls
     }
 }
 
+
+Q. Why to use DRF (Django Rest Framework) if we can make APIs using Django itself?
+    => There are lots of packages already created in DRF for APIs which are not present in Django.
+1. Serializer
+    ->DRF provides serialization / deserialization feature not included in Django
+2. API Authentication and Permission
+3. PAGINATION and Filter Backend for API
+4. Throttling

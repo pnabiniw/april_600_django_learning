@@ -43,7 +43,9 @@ INSTALLED_APPS = [
     "crud",
     "accounts",
     "quiz",
-    "classbased"
+    "classbased",
+    "api",
+    "rest_framework"
 ]
 
 MIDDLEWARE = [
