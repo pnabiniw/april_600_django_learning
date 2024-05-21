@@ -1,0 +1,3 @@
+1. Serializer is one of the important features of DRF
+2. Serializer is used to serialize non-native datatypes in python and return a serializable JSON response
+3. Serializer is also used to deserialize JSON data
