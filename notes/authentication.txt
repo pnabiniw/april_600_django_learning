@@ -1,0 +1,11 @@
+Types of Authentication
+
+1. Basic Authentication
+2. Session Authentication
+3. Token Authentication
+4. JWT (Json Web Token)
+=> Factors affecting the creation of JWT
+    -> Current Time
+    -> Secret Key
+    => Username Field (username, email, phone)
+    => Encryption Algorithm

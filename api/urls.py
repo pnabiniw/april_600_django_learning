@@ -1,14 +1,22 @@
 from django.urls import path
+from rest_framework.routers import DefaultRouter
+from rest_framework.authtoken.views import obtain_auth_token
 from . import views
 
 app_name = "api"
+
+router = DefaultRouter()
+
+router.register("viewset/classroom", views.ClassRoomViewSet, basename="classroom")
+router.register("viewset/student", views.StudentViewSet, basename="student")
 
 urlpatterns = [
     path("student/", views.StudentView.as_view(), name="student"),
     path("student/<int:id>/", views.StudentDetailView.as_view(), name="student_detail"),
     path("classroom/", views.ClassRoomView.as_view(), name="classroom"),
     path("classroom/<int:id>/", views.ClassRoomView.as_view(), name="classroom_patch"),
-]
+    path("login/", obtain_auth_token)
+] + router.urls
 
 
 using_serializer_paths = [
@@ -28,6 +36,7 @@ generic_urls = [
     path("generic/classroom-update/<int:pk>/", views.ClassRoomGenericUpdateView.as_view()),
     path("generic/classroom-detail/<int:pk>/", views.ClassRoomGenericDetailView.as_view()),
     path("generic/classroom-delete/<int:pk>/", views.ClassRoomGenericDeleteView.as_view()),
+    path("generic/student/<int:pk>/", views.StudentUpdateRetrieveDestroyView.as_view())
 ]
 
 urlpatterns += using_serializer_paths + using_model_serializer_paths + generic_urls
