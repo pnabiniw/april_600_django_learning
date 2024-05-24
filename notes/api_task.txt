@@ -1,0 +1,7 @@
+1. User SignUp API (SuperUser, IsStaff, Normal)
+2. Login API
+3. Get User List => Public Permission
+4. User Detail => Public Permission
+5. Patch, Put => StaffPermission, Own Information
+6. Delete => Superadmin and Own Information
+

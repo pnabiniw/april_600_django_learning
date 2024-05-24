@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from django.contrib.auth.models import User
 from crud.models import Student, ClassRoom
 
 
@@ -34,3 +35,14 @@ class StudentModelSerializer(serializers.ModelSerializer):
         if request and request.method == "GET":
             fields["classroom"] = ClassRoomModelSerializer()
         return fields
+
+
+class UserModelSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = "__all__"
+        extra_kwargs = {
+            "password": {
+                "write_only": True
+            }
+        }

@@ -9,6 +9,7 @@ router = DefaultRouter()
 
 router.register("viewset/classroom", views.ClassRoomViewSet, basename="classroom")
 router.register("viewset/student", views.StudentViewSet, basename="student")
+router.register("viewset/user", views.UserViewSet, basename="user")
 
 urlpatterns = [
     path("student/", views.StudentView.as_view(), name="student"),

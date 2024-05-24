@@ -25,3 +25,4 @@
 25. CRUD using serializer validation (May 21)
 26. Serializer get_fields and Generic Views (May 22)
 27. ViewSet and Authentication (May 23)
+28. Permissions (May 24)

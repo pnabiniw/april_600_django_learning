@@ -2,14 +2,17 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 
 from rest_framework.authentication import TokenAuthentication
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, AllowAny, IsAdminUser
 
 from rest_framework import status
 from rest_framework.generics import ListAPIView, CreateAPIView, ListCreateAPIView, UpdateAPIView, \
     RetrieveAPIView, DestroyAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework.viewsets import ModelViewSet
+from django.contrib.auth.models import User
 from crud.models import Student, ClassRoom
-from .serializers import ClassRoomSerializer, StudentSerializer, StudentModelSerializer, ClassRoomModelSerializer
+from .serializers import ClassRoomSerializer, \
+    StudentSerializer, StudentModelSerializer, ClassRoomModelSerializer, UserModelSerializer
+from .permissions import IsSuperAdminUser
 
 # 1XX => Socket Communication
 # 2XX => Success (200, 201, 204)
@@ -262,12 +265,27 @@ class StudentUpdateRetrieveDestroyView(RetrieveUpdateDestroyAPIView):
     queryset = Student.objects.all()
     serializer_class = StudentModelSerializer
 
+
 class ClassRoomViewSet(ModelViewSet):
     serializer_class = ClassRoomModelSerializer
     queryset = ClassRoom.objects.all()
 
+    def get_permissions(self):
+        if self.request.method == "GET":
+            return [AllowAny(), ]
+        if self.request.method in ["PUT", "PATCH", "DELETE"]:
+            return [IsSuperAdminUser(), ]
+        if self.request.method == "POST":
+            return [(IsAdminUser | IsSuperAdminUser)(), ]
+        return [IsAuthenticated()]
+
 
 class StudentViewSet(ModelViewSet):
+    # permission_classes = [AllowAny]
     serializer_class = StudentModelSerializer
     queryset = Student.objects.all()
 
+
+class UserViewSet(ModelViewSet):
+    serializer_class = UserModelSerializer
+    queryset = User.objects.all()
