@@ -1,0 +1,31 @@
+{% extends 'commons/layouts/base.html' %}
+
+{% block title %}Student Consuming API{% endblock %}
+
+{% block content %}
+    <div class="container">
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>S.N</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Email</th>
+            <th>Address</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for student in students %}
+            <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ student.name }}</td>
+            <td>{{ student.age }}</td>
+            <td>{{ student.email }}</td>
+            <td>{{ student.address }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+{% endblock %}

@@ -16,7 +16,8 @@ urlpatterns = [
     path("student/<int:id>/", views.StudentDetailView.as_view(), name="student_detail"),
     path("classroom/", views.ClassRoomView.as_view(), name="classroom"),
     path("classroom/<int:id>/", views.ClassRoomView.as_view(), name="classroom_patch"),
-    path("login/", obtain_auth_token)
+    # path("login/", obtain_auth_token),
+    path("login/", views.LoginAPIView.as_view()),
 ] + router.urls
 
 

@@ -26,3 +26,4 @@
 26. Serializer get_fields and Generic Views (May 22)
 27. ViewSet and Authentication (May 23)
 28. Permissions (May 24)
+29. Pagination, Search, Filter (May 26)

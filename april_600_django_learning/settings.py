@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     "classbased",
     "api",
     "rest_framework",
-    "rest_framework.authtoken"
+    "rest_framework.authtoken",
+    "django_filters"
 ]
 
 MIDDLEWARE = [
@@ -150,5 +151,12 @@ MESSAGE_TAGS = {
 
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": ["rest_framework.authentication.TokenAuthentication"],
-    "DEFAULT_PERMISSION_CLASSES": ["rest_framework.permissions.IsAuthenticated"]
+    "DEFAULT_PERMISSION_CLASSES": ["rest_framework.permissions.IsAuthenticated"],
+    # "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination",
+    "PAGE_SIZE": 2
 }
+
+# Pagination Types in DRF
+# PageNumberPagination => ?page=4
+# LimitOffSetPagination => ?limit=10&offset=5

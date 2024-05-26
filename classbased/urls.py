@@ -14,5 +14,6 @@ urlpatterns = [
     path("student-update/<int:pk>/", views.StudentUpdateView.as_view(), name="student_update"),
 
     path("api/student/<int:id>/", views.student_detail_api_view),
+    path("student/consuming-api/", views.StudentConsumingView.as_view(), name="student_consuming_api"),
     path("", views.HomeView.as_view(), name="home"),
 ]
