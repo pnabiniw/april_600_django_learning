@@ -46,3 +46,10 @@ class UserModelSerializer(serializers.ModelSerializer):
                 "write_only": True
             }
         }
+
+    def create(self, validated_data):
+        user = super().create(validated_data)
+        password = validated_data["password"]
+        user.set_password(password)
+        user.save()
+        return user

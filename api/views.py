@@ -288,4 +288,22 @@ class StudentViewSet(ModelViewSet):
 
 class UserViewSet(ModelViewSet):
     serializer_class = UserModelSerializer
-    queryset = User.objects.all()
+
+    def get_queryset(self):
+        if self.request.user.is_superuser:
+            return User.objects.all()
+        if self.request in ["PUT", "PATCH"]:
+            if self.request.user.is_staff:
+                return User.objects.all()
+        return User.objects.filter(id=self.request.user.id)
+
+    def get_permissions(self):
+        if self.request.method == "GET":
+            return [AllowAny(), ]
+        if self.request.method in ["PATCH", "PUT"]:
+            return [(IsAdminUser | IsAuthenticated)(), ]
+        if self.request == "POST":
+            return [IsSuperAdminUser(), ]
+        if self.request == "DELETE":
+            return [(IsSuperAdminUser | IsAuthenticated)()]
+        return [IsAuthenticated(), ]
